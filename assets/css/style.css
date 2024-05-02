@@ -834,13 +834,22 @@ main {
  * skills 
  */
 
- .skill { margin-bottom: 35px; }
+.skill { margin-bottom: 35px; }
 .skills-title { margin-bottom: 20px; }
+.skill-item-title{ 
+  margin-bottom: 8px;   
+}
 
 .skills-list { padding: 20px; }
 
+.skill .columnlayout{        
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  column-gap: 50px;
+}
 
-.skills-item:not(:last-child) { margin-bottom: 15px; }
+
+/* .skills-item:not(:last-child) { margin-bottom: 15px; } */
 
 .skill .title-wrapper {
   display: flex;
@@ -1499,7 +1508,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     left: -43px;
   }
 
-  .skills-item:not(:last-child) { margin-bottom: 25px; }
+  /* .skills-item:not(:last-child) { margin-bottom: 25px; } */
 
 
 
