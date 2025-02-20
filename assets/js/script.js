@@ -69,6 +69,7 @@ const portfolioModalImg = document.querySelector("[portfolio-data-modal-img]");
 const portfolioModalTitle = document.querySelector("[portfolio-data-modal-title]");
 const portfolioModalText = document.querySelector("[portfolio-data-modal-text]");
 const portfolioModalTime = document.querySelector("[portfolio-data-modal-time]");
+const portfolioModalVideo = document.querySelector("[portfolio-data-modal-video]");
 
 // modal toggle function
 const portfolioModalFunc = function () {
@@ -76,17 +77,20 @@ const portfolioModalFunc = function () {
   portfolioOverlay.classList.toggle("active");
 }
 
+
+const stopYouTubeVideo = function () {
+  if (portfolioModalVideo && portfolioModalVideo.contentWindow) {
+    portfolioModalVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');    
+  }
+}
+
 // add click event to all modal items
 for (let i = 0; i < portfolioItem.length; i++) {
 
   portfolioItem[i].addEventListener("click", function () {
-
-    // modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    // modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    // modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    // modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-    // modalTime.innerHTML = this.querySelector("[data-testimonials-date]").innerHTML;
-
+    portfolioModalTitle.innerText = this.getAttribute("data-title");
+    portfolioModalText.innerText = this.getAttribute("data-description");
+    portfolioModalVideo.src = this.getAttribute("data-video");
     portfolioModalFunc();
 
   });
@@ -94,8 +98,14 @@ for (let i = 0; i < portfolioItem.length; i++) {
 }
 
 // add click event to modal close button
-portfolioModalCloseBtn.addEventListener("click", portfolioModalFunc);
-portfolioOverlay.addEventListener("click", portfolioModalFunc);
+portfolioModalCloseBtn.addEventListener("click", function () {
+  portfolioModalFunc();
+  stopYouTubeVideo();
+});
+portfolioOverlay.addEventListener("click", function () {
+  portfolioModalFunc();
+  stopYouTubeVideo();
+});
 
 
 // custom select variables
