@@ -89,7 +89,7 @@ for (let i = 0; i < portfolioItem.length; i++) {
 
   portfolioItem[i].addEventListener("click", function () {
     portfolioModalTitle.innerText = this.getAttribute("data-title");
-    portfolioModalText.innerText = this.getAttribute("data-description");
+    portfolioModalText.innerHTML = this.getAttribute("data-description");
     portfolioModalVideo.src = this.getAttribute("data-video");
     portfolioModalFunc();
 
