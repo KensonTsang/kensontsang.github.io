@@ -704,6 +704,7 @@ main {
 }
 
 
+/* Ensure the modal does not force stacking */
 .portfolio-modal {
   background: var(--eerie-black-2);
   position: relative;
@@ -716,6 +717,9 @@ main {
   opacity: 0;
   transition: var(--transition-1);
   z-index: 2;
+  max-width: 90vw; /* Ensures modal is not too wide */
+  max-height: 90vh; /* Prevents excessive height */
+  overflow: hidden; /* Prevents unwanted overflow */
 }
 
 .portfolio-modal.scrollable {
@@ -1777,10 +1781,41 @@ textarea.form-input::-webkit-resizer { display: none; }
   .modal-avatar-box img { width: 80px; }
 
 
+  
 
   /**
    * PORTFOLIO
    */
+
+   .screenshot-container {
+    display: flex;
+    flex-direction: row; /* Forces horizontal alignment */
+    gap: 10px; /* Adds spacing between images */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    overflow-y: hidden; /* Prevents vertical stacking */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Edge */
+    white-space: nowrap; /* Ensures images do not wrap to the next line */
+    touch-action: pan-x; /* Enables smooth touch scrolling */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
+    width: 100%; /* Ensures it takes full width */
+    max-width: 100%; /* Prevents overflow *
+    }
+
+  /* Hide scrollbar in Chrome/Safari */
+  .screenshot-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Ensure images remain in a horizontal row */
+  .screenshot-container img {
+    flex-shrink: 0; /* Prevents images from shrinking */
+    height: auto;
+    width: 250px; /* Adjust width if needed */
+    max-width: 80vw; /* Ensures responsiveness */
+    object-fit: cover; /* Ensures proper aspect ratio */
+  }
+
 
   .article-title { padding-bottom: 20px; }
 
