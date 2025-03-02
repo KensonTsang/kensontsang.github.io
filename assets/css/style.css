@@ -669,7 +669,7 @@ main {
   visibility: visible;
 }
 
-.overlay {
+.overlay {  
   position: fixed;
   top: 0;
   left: 0;
@@ -1397,7 +1397,45 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .clients-item { min-width: calc(33.33% - 10px); }
 
+  .image-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 10000; /* Ensure it is above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+  }
 
+  .image-modal.show {
+      opacity: 1;
+      pointer-events: auto;
+  }
+
+  .image-modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      z-index: 10001; /* Ensure image is on top */
+  }
+
+  .image-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10002; /* Ensure close button is on top */
+  }
 
   /**
    * #PORTFOLIO, BLOG 
@@ -1437,6 +1475,46 @@ textarea.form-input::-webkit-resizer { display: none; }
     --fs-8: 12px;
 
   }
+
+  .image-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 10000; /* Ensure it is above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+.image-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    z-index: 10001; /* Ensure image is on top */
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10002; /* Ensure close button is on top */
+}
 
 
 
@@ -1780,7 +1858,45 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .modal-avatar-box img { width: 80px; }
 
+  .image-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 10000; /* Ensure it is above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+}
 
+.image-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    z-index: 10001; /* Ensure image is on top */
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10002; /* Ensure close button is on top */
+}
   
 
   /**

@@ -78,6 +78,43 @@ const portfolioModalFunc = function () {
 }
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  let modal = document.getElementById("imageModal");
+  let fullImage = document.getElementById("fullImage");
+  let closeBtn = document.querySelector(".image-modal-close");
+
+  // Hide modal on page load (extra safety measure)
+  modal.style.display = "none";
+
+  // Attach click event to each screenshot
+  document.addEventListener("click", function (event) {
+      if (event.target.closest(".screenshot-thumbnail")) {
+          event.preventDefault(); // Prevent default link behavior
+          let fullsizeUrl = event.target.closest(".screenshot-thumbnail").getAttribute("data-fullsize");
+          fullImage.src = fullsizeUrl; // Set full-size image
+          modal.style.display = "flex"; // Show modal
+          setTimeout(() => modal.classList.add("show"), 10); // Add fade-in effect
+      }
+  });
+
+  // Close the modal when clicking on close button
+  closeBtn.addEventListener("click", function () {
+      modal.classList.remove("show");
+      setTimeout(() => (modal.style.display = "none"), 300); // Hide after transition
+  });
+
+  // Close the modal when clicking outside the image
+  modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+          modal.classList.remove("show");
+          setTimeout(() => (modal.style.display = "none"), 300);
+      }
+  });
+});
+
+
+
 const stopYouTubeVideo = function () {
   if (portfolioModalVideo && portfolioModalVideo.contentWindow) {
     portfolioModalVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');    
