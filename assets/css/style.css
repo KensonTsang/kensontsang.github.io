@@ -1378,7 +1378,86 @@ textarea.form-input::-webkit-resizer { display: none; }
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
 
+.image-modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 10000; /* Ensure it is above everything */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Start hidden */
+  pointer-events: none; /* Prevent interaction when hidden */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+}
 
+.image-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    z-index: 10001; /* Ensure image is on top */
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10002; /* Ensure close button is on top */
+}
+
+
+.screenshot-container {
+  display: flex;
+  flex-wrap: nowrap; /* Ensures images stay in one row */
+  gap: 10px; /* Adds spacing between images */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  overflow-y: hidden; /* Prevents vertical stacking */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar in Edge */
+  white-space: nowrap; /* Prevents images from wrapping */
+  touch-action: pan-x; /* Ensures smooth touch scrolling */
+  -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
+  padding-bottom: 10px; /* Prevents clipping issues */
+  max-width: 100%;
+}
+
+/* Hide scrollbar in Chrome/Safari */
+.screenshot-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure the images are properly sized and scrollable */
+.screenshot-wrapper {
+  flex: 0 0 auto; /* Prevents shrinking */
+  width: 250px; /* Adjust width as needed */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Adjust the images inside */
+.screenshot-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image scales properly */
+  transition: transform 0.3s ease-in-out;
+}
+
+.screenshot-wrapper img:hover {
+  transform: scale(1.05); /* Optional zoom effect */
+}
 
 
 /*-----------------------------------*\
@@ -1395,47 +1474,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    * client
    */
 
-  .clients-item { min-width: calc(33.33% - 10px); }
-
-  .image-modal {
-    display: none; /* Initially hidden */
-    position: fixed;
-    z-index: 10000; /* Ensure it is above everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Start hidden */
-    pointer-events: none; /* Prevent interaction when hidden */
-    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
-  }
-
-  .image-modal.show {
-      opacity: 1;
-      pointer-events: auto;
-  }
-
-  .image-modal-content {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      z-index: 10001; /* Ensure image is on top */
-  }
-
-  .image-modal-close {
-      position: absolute;
-      top: 15px;
-      right: 30px;
-      color: white;
-      font-size: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 10002; /* Ensure close button is on top */
-  }
+  .clients-item { min-width: calc(33.33% - 10px); }  
 
   /**
    * #PORTFOLIO, BLOG 
@@ -1475,46 +1514,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     --fs-8: 12px;
 
   }
-
-  .image-modal {
-    display: none; /* Initially hidden */
-    position: fixed;
-    z-index: 10000; /* Ensure it is above everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Start hidden */
-    pointer-events: none; /* Prevent interaction when hidden */
-    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
-}
-
-.image-modal.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.image-modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    z-index: 10001; /* Ensure image is on top */
-}
-
-.image-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 30px;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10002; /* Ensure close button is on top */
-}
 
 
 
@@ -1858,79 +1857,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .modal-avatar-box img { width: 80px; }
 
-  .image-modal {
-    display: none; /* Initially hidden */
-    position: fixed;
-    z-index: 10000; /* Ensure it is above everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Start hidden */
-    pointer-events: none; /* Prevent interaction when hidden */
-    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
-}
-
-.image-modal.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.image-modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    z-index: 10001; /* Ensure image is on top */
-}
-
-.image-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 30px;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10002; /* Ensure close button is on top */
-}
   
 
   /**
    * PORTFOLIO
    */
-
-   .screenshot-container {
-    display: flex;
-    flex-direction: row; /* Forces horizontal alignment */
-    gap: 10px; /* Adds spacing between images */
-    overflow-x: auto; /* Enables horizontal scrolling */
-    overflow-y: hidden; /* Prevents vertical stacking */
-    scrollbar-width: none; /* Hides scrollbar in Firefox */
-    -ms-overflow-style: none; /* Hides scrollbar in Edge */
-    white-space: nowrap; /* Ensures images do not wrap to the next line */
-    touch-action: pan-x; /* Enables smooth touch scrolling */
-    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
-    width: 100%; /* Ensures it takes full width */
-    max-width: 100%; /* Prevents overflow *
-    }
-
-  /* Hide scrollbar in Chrome/Safari */
-  .screenshot-container::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Ensure images remain in a horizontal row */
-  .screenshot-container img {
-    flex-shrink: 0; /* Prevents images from shrinking */
-    height: auto;
-    width: 250px; /* Adjust width if needed */
-    max-width: 80vw; /* Ensures responsiveness */
-    object-fit: cover; /* Ensures proper aspect ratio */
-  }
 
 
   .article-title { padding-bottom: 20px; }
