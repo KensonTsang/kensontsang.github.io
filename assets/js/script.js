@@ -82,34 +82,102 @@ const portfolioModalFunc = function () {
 document.addEventListener("DOMContentLoaded", function () {
   let modal = document.getElementById("imageModal");
   let fullImage = document.getElementById("fullImage");
+  let fullVideo = document.getElementById("fullVideo");
   let closeBtn = document.querySelector(".image-modal-close");
+  let prevBtn = document.getElementById("prevButton");
+  let nextBtn = document.getElementById("nextButton");
+  
+  let thumbnails = [];
+  let currentIndex = -1;
 
-  // Hide modal on page load (extra safety measure)
-  modal.style.display = "none";
+  // Function to open the modal with the correct image/video
+  function openModal(index) {
+      let thumbnail = thumbnails[index];
+      if (!thumbnail) return;
 
-  // Attach click event to each screenshot
+      let fullsizeUrl = thumbnail.getAttribute("data-fullsize");
+      let videoUrl = thumbnail.getAttribute("data-video");
+
+      modal.style.display = "flex";
+      currentIndex = index;
+
+      if (videoUrl) {
+          // Show video
+          fullVideo.src = videoUrl;
+          fullVideo.style.display = "block";
+          fullImage.style.display = "none";
+      } else {
+          // Show image
+          fullImage.src = fullsizeUrl;
+          fullImage.style.display = "block";
+          fullVideo.style.display = "none";
+      }
+
+      prevBtn.style.display = (currentIndex == 0)? "none" : "block";
+
+      nextBtn.style.display = (currentIndex == thumbnails.length - 1)? "none" : "block";
+
+      setTimeout(() => {
+          modal.classList.add("show");          
+      }, 10);
+  }
+
+  // Attach click event to all screenshots
   document.addEventListener("click", function (event) {
-      if (event.target.closest(".screenshot-thumbnail")) {
-          event.preventDefault(); // Prevent default link behavior
-          let fullsizeUrl = event.target.closest(".screenshot-thumbnail").getAttribute("data-fullsize");
-          fullImage.src = fullsizeUrl; // Set full-size image
-          modal.style.display = "flex"; // Show modal
-          setTimeout(() => modal.classList.add("show"), 10); // Add fade-in effect
+      let thumbnail = event.target.closest(".screenshot-thumbnail");
+      if (thumbnail) {
+          event.preventDefault();
+          thumbnails = Array.from(document.querySelectorAll(".screenshot-thumbnail"));
+          currentIndex = thumbnails.indexOf(thumbnail);
+          openModal(currentIndex);
       }
   });
 
-  // Close the modal when clicking on close button
-  closeBtn.addEventListener("click", function () {
+  // Close modal function
+  function closeModal() {
       modal.classList.remove("show");
-      setTimeout(() => (modal.style.display = "none"), 300); // Hide after transition
-  });
+      setTimeout(() => {
+          modal.style.display = "none";          
+          fullImage.src = "";
+          fullVideo.src = ""; // Stop video playback
+      }, 300);
+  }
 
-  // Close the modal when clicking outside the image
+  closeBtn.addEventListener("click", closeModal);
+
   modal.addEventListener("click", function (event) {
       if (event.target === modal) {
-          modal.classList.remove("show");
-          setTimeout(() => (modal.style.display = "none"), 300);
+          closeModal();
       }
+  });
+
+  // Navigate to previous screenshot
+  prevBtn.addEventListener("click", function () {
+      if (currentIndex > 0) {
+          openModal(currentIndex - 1);
+      }
+  });
+
+  // Navigate to next screenshot
+  nextBtn.addEventListener("click", function () {
+      if (currentIndex < thumbnails.length - 1) {
+          openModal(currentIndex + 1);
+      }
+  });
+
+
+  document.addEventListener("keydown", function (event) {
+    if (modal.style.display === "flex") { // Only navigate if modal is open
+        if (event.key === "ArrowLeft" && currentIndex > 0) {
+            openModal(currentIndex - 1); // Go to previous image
+        }
+        if (event.key === "ArrowRight" && currentIndex < thumbnails.length - 1) {
+            openModal(currentIndex + 1); // Go to next image
+        }
+        if (event.key === "Escape") {
+            closeModal(); // Close modal with Esc key
+        }
+    }
   });
 });
 

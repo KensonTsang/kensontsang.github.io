@@ -1400,11 +1400,53 @@ textarea.form-input::-webkit-resizer { display: none; }
     pointer-events: auto;
 }
 
+.image-modal-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%;
+  max-height: 90%;
+  background: #000;
+}
+
 .image-modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    z-index: 10001; /* Ensure image is on top */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.image-modal-video {
+  width: 90vw; /* Make sure video is responsive */
+  height: 50vw; /* Maintain aspect ratio */
+  max-width: 800px;
+  max-height: 450px;
+  border-radius: 12px;
+}
+
+
+.image-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);  
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 100002;
+  transition:  rgba(0, 0, 0, 0.6) 0.3s ease-in-out;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
 }
 
 .image-modal-close {

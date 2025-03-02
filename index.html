@@ -962,8 +962,13 @@
       <!-- Image Lightbox Modal -->
       <div id="imageModal" class="image-modal">
         <span class="image-modal-close">&times;</span>
-        <img class="image-modal-content" id="fullImage">
-      </div>
+        <button id="prevButton" class="image-modal-nav prev">&lt;</button>
+        <div class="image-modal-wrapper">
+            <img class="image-modal-content" id="fullImage" style="display: none;">
+            <iframe id="fullVideo" class="image-modal-video" src="" frameborder="0" allowfullscreen style="display: none;"></iframe>
+        </div>
+        <button id="nextButton" class="image-modal-nav next">&gt;</button>
+    </div>
 
       <!--
         - #PORTFOLIO
@@ -1050,12 +1055,12 @@
                         <img src='./assets/images/portfolio/ElsaIceMagic.jpg' alt='SLAM AR Screenshot 1'>
                       </div>
                     </a>
-                    <a href='#' class='screenshot-thumbnail' data-fullsize='./assets/images/portfolio/ElsaIceMagic.jpg'>
+                    <a href='#' class='screenshot-thumbnail' data-fullsize='./assets/images/portfolio/MirroArCardCollection.png'>
                       <div class='screenshot-wrapper'>
-                        <img src='./assets/images/portfolio/ElsaIceMagic.jpg' alt='SLAM AR Screenshot 1'>
+                        <img src='./assets/images/portfolio/MirroArCardCollection.png' alt='SLAM AR Screenshot 1'>
                       </div>
                     </a>
-                    <a href='#' class='screenshot-thumbnail' data-fullsize='./assets/images/portfolio/ElsaIceMagic.jpg'>
+                    <a href='#' class='screenshot-thumbnail' data-video='https://www.youtube.com/embed/dCUI_cBJKZg'>
                       <div class='screenshot-wrapper'>
                         <img src='./assets/images/portfolio/ElsaIceMagic.jpg' alt='SLAM AR Screenshot 1'>
                       </div>
