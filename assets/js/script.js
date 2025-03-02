@@ -68,7 +68,7 @@ const portfolioOverlay = document.querySelector("[portfolio-data-overlay]");
 const portfolioModalImg = document.querySelector("[portfolio-data-modal-img]");
 const portfolioModalTitle = document.querySelector("[portfolio-data-modal-title]");
 const portfolioModalText = document.querySelector("[portfolio-data-modal-text]");
-const portfolioModalTime = document.querySelector("[portfolio-data-modal-time]");
+const portfolioModalTime = document.querySelector("[portfolio-data-modal-subtitle]");
 const portfolioModalVideo = document.querySelector("[portfolio-data-modal-video]");
 
 // modal toggle function
@@ -88,8 +88,9 @@ const stopYouTubeVideo = function () {
 for (let i = 0; i < portfolioItem.length; i++) {
 
   portfolioItem[i].addEventListener("click", function () {
-    portfolioModalTitle.innerText = this.getAttribute("data-title");
-    portfolioModalText.innerHTML = this.getAttribute("data-description");
+    portfolioModalTitle.innerText = this.getAttribute("data-title");    
+    portfolioModalTime.innerHTML = this.getAttribute("data-subtitle");
+    portfolioModalText.innerHTML = this.getAttribute("data-description");    
     portfolioModalVideo.src = this.getAttribute("data-video");
     portfolioModalFunc();
 
