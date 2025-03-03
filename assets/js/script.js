@@ -90,6 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let thumbnails = [];
   let currentIndex = -1;
 
+  let startX = 0; // Track starting X position for swipe
+  let endX = 0;   // Track ending X position for swipe
+
   // Function to open the modal with the correct image/video
   function openModal(index) {
       let thumbnail = thumbnails[index];
@@ -179,6 +182,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
   });
+
+
+
+  modal.addEventListener("touchstart", function (event) {
+    startX = event.touches[0].clientX; // Store the starting X position
+  });
+
+  modal.addEventListener("touchend", function (event) {
+      endX = event.changedTouches[0].clientX; // Store the ending X position
+
+      let swipeDistance = endX - startX;
+
+      if (swipeDistance > 50 && currentIndex > 0) {
+          // Swipe right → Previous image
+          openModal(currentIndex - 1);
+      } else if (swipeDistance < -50 && currentIndex < thumbnails.length - 1) {
+          // Swipe left → Next image
+          openModal(currentIndex + 1);
+      }
+  });
+
+
 });
 
 
