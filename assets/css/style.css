@@ -1401,31 +1401,32 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 .image-modal-wrapper {
-  border-radius: 12px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 90%;
-  max-height: 90%;
-  background: #000;
+  max-width: 90vw; /* Ensures it doesn’t exceed viewport width */
+  max-height: 90vh; /* Ensures it doesn’t exceed viewport height */
+  overflow: hidden; /* Prevents any overflow */
+  border-radius: 12px; /* Keeps rounded corners */
+  background: black; /* Ensures a clean background */
 }
 
 .image-modal-content {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+  width: auto; /* Adjusts width automatically */
+  height: auto; /* Adjusts height automatically */
+  max-width: 90vw; /* Maximum width is 90% of viewport */
+  max-height: 90vh; /* Maximum height is 90% of viewport */
+  object-fit: contain; /* Ensures the whole image is visible without cropping */
 }
 
 .image-modal-video {
-  width: 90vw; /* Make sure video is responsive */
-  height: 50vw; /* Maintain aspect ratio */
+  width: 90vw; /* Makes it responsive */
+  height: 50vw; /* Adjusts height proportionally */
   max-width: 800px;
   max-height: 450px;
   border-radius: 12px;
+  object-fit: contain; /* Ensures the entire video is visible */
 }
-
 
 .image-modal-nav {
   position: absolute;
@@ -1899,7 +1900,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .modal-avatar-box img { width: 80px; }
 
-  
 
   /**
    * PORTFOLIO
