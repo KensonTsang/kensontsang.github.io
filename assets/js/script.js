@@ -99,21 +99,22 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!thumbnail) return;
 
       let fullsizeUrl = thumbnail.getAttribute("data-fullsize");
-      let videoUrl = thumbnail.getAttribute("data-video");
+      let videoUrl = thumbnail.getAttribute("data-video");      
 
       modal.style.display = "flex";
       currentIndex = index;
 
       if (videoUrl) {
-          // Show video
-          fullVideo.src = videoUrl;
-          fullVideo.style.display = "block";
-          fullImage.style.display = "none";
+        // Show video
+        fullVideo.src = videoUrl;
+        fullVideo.style.display = "block";
+        fullImage.style.display = "none";
+
       } else {
-          // Show image
-          fullImage.src = fullsizeUrl;
-          fullImage.style.display = "block";
-          fullVideo.style.display = "none";
+        // Show image
+        fullImage.src = fullsizeUrl;
+        fullImage.style.display = "block";
+        fullVideo.style.display = "none";
       }
 
       prevBtn.style.display = (currentIndex == 0)? "none" : "block";
