@@ -777,6 +777,13 @@ main {
   margin-bottom: 10px;
 }
 
+.modal-content description {
+  font-size: var(--fs-6);
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+  margin-bottom: 10px;
+}
+
 .modal-content p {
   color: var(--light-gray);
   font-size: var(--fs-6);
