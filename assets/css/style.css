@@ -893,6 +893,13 @@ main {
   color: var(--light-gray);
 }
 
+.timeline-item-Location-margin{
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  margin-bottom: 9px;
+  color: var(--light-gray-70);
+}
+
 .timeline-list span {
   color: var(--vegas-gold);
   font-weight: var(--fw-400);
